@@ -13,8 +13,18 @@ public class SeckillController {
     @Autowired
     private SeckillService seckillService;
 
+    /**
+     * 参与秒杀
+     * @param goodId
+     * @param userId
+     * @return
+     */
     @GetMapping("/seckill/{goodId}")
     public SeckillResult seckill(@PathVariable("goodId") String goodId, @RequestParam("userId") String userId){
         return seckillService.joinSeckill(goodId, userId);
+    }
+    @GetMapping("/seckill/query/{goodId}")
+    public SeckillResult querySeckill(@PathVariable("goodId") String goodId, @RequestParam("userId") String userId){
+        return seckillService.querySeckill(goodId, userId);
     }
 }

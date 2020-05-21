@@ -29,10 +29,14 @@ public class GoodDao {
      * @return
      */
     public boolean isJoinSeckill(@NotNull SeckillInfo seckillInfo){
-        if (StringUtils.isEmpty(stringRedisTemplate.opsForValue().get("seckill:" + seckillInfo.getGoodsId() + ":" + seckillInfo.getUserId()))){
+        if (StringUtils.isEmpty(querySeckill(seckillInfo))){
             return false;
         }
         return true;
+    }
+
+    public String querySeckill(@NotNull SeckillInfo seckillInfo){
+        return stringRedisTemplate.opsForValue().get("seckill:" + seckillInfo.getGoodsId() + ":" + seckillInfo.getUserId());
     }
 
     /**
